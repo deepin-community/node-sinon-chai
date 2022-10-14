@@ -1,0 +1,229 @@
+Description: update test for node-sinon 9.2.4
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: no
+Last-Update: 2021-01-26
+
+--- a/test/messages.js
++++ b/test/messages.js
+@@ -24,10 +24,10 @@
+ 
+             expect(function () {
+                 spy.should.have.callCount(1);
+-            }).to.throw("expected spy to have been called exactly once, but it was called 0 times");
++            }).to.throw("expected spy to have been called exactly 'once', but it was called 0 times");
+             expect(function () {
+                 spy.should.have.callCount(4);
+-            }).to.throw("expected spy to have been called exactly 4 times, but it was called 0 times");
++            }).to.throw("expected spy to have been called exactly '4 times', but it was called 0 times");
+ 
+             expect(function () {
+                 spy.should.have.been.calledOnceWith();
+@@ -72,11 +72,11 @@
+ 
+             expect(function () {
+                 calledOnce.should.not.have.callCount(1);
+-            }).to.throw("expected spy to not have been called exactly once");
++            }).to.throw("expected spy to not have been called exactly 'once'");
+ 
+             expect(function () {
+                 calledFourTimes.should.not.have.callCount(4);
+-            }).to.throw("expected spy to not have been called exactly 4 times");
++            }).to.throw("expected spy to not have been called exactly '4 times'");
+         });
+     });
+ 
+@@ -90,22 +90,22 @@
+ 
+             expect(function () {
+                 spyA.should.have.been.calledBefore(spyB);
+-            }).to.throw("expected spyA to have been called before function spyB() {}");
++            }).to.throw(/^expected spyA to have been called before /);
+ 
+             if (spyA.calledImmediatelyBefore) {
+                 expect(function () {
+                     spyA.should.have.been.calledImmediatelyBefore(spyB);
+-                }).to.throw("expected spyA to have been called immediately before function spyB() {}");
++                }).to.throw(/^expected spyA to have been called immediately before/);
+             }
+ 
+             expect(function () {
+                 spyB.should.have.been.calledAfter(spyA);
+-            }).to.throw("expected spyB to have been called after function spyA() {}");
++            }).to.throw(/^expected spyB to have been called after /);
+ 
+             if (spyB.calledImmediatelyAfter) {
+                 expect(function () {
+                     spyB.should.have.been.calledImmediatelyAfter(spyA);
+-                }).to.throw("expected spyB to have been called immediately after function spyA() {}");
++                }).to.throw(/^expected spyB to have been called immediately after /);
+             }
+         });
+ 
+@@ -121,22 +121,22 @@
+ 
+             expect(function () {
+                 spyA.should.not.have.been.calledBefore(spyB);
+-            }).to.throw("expected spyA to not have been called before function spyB() {}");
++            }).to.throw(/^expected spyA to not have been called before /);
+ 
+             if (spyA.calledImmediatelyBefore) {
+                 expect(function () {
+                     spyA.should.not.have.been.calledImmediatelyBefore(spyB);
+-                }).to.throw("expected spyA to not have been called immediately before function spyB() {}");
++                }).to.throw(/^expected spyA to not have been called immediately before /);
+             }
+ 
+             expect(function () {
+                 spyB.should.not.have.been.calledAfter(spyA);
+-            }).to.throw("expected spyB to not have been called after function spyA() {}");
++            }).to.throw(/^expected spyB to not have been called after /);
+ 
+             if (spyB.calledImmediatelyAfter) {
+                 expect(function () {
+                     spyB.should.not.have.been.calledImmediatelyAfter(spyA);
+-                }).to.throw("expected spyB to not have been called immediately after function spyA() {}");
++                }).to.throw(/^expected spyB to not have been called immediately after /);
+             }
+         });
+     });
+@@ -149,7 +149,7 @@
+ 
+             spy.call(badContext);
+ 
+-            var expected = "expected spy to have been called with {  } as this, but it was called with " +
++            var expected = "expected spy to have been called with {} as this, but it was called with " +
+                            spy.printf("%t") + " instead";
+             expect(function () {
+                 spy.should.have.been.calledOn(context);
+@@ -165,7 +165,7 @@
+ 
+             spy.call(context);
+ 
+-            var expected = "expected spy to not have been called with {  } as this";
++            var expected = "expected spy to not have been called with {} as this";
+             expect(function () {
+                 spy.should.not.have.been.calledOn(context);
+             }).to.throw(expected);
+@@ -181,7 +181,7 @@
+ 
+             spy.call(badContext);
+ 
+-            var expected = "expected spy to always have been called with {  } as this, but it was called with " +
++            var expected = "expected spy to always have been called with {} as this, but it was called with " +
+                            spy.printf("%t") + " instead";
+             expect(function () {
+                 spy.should.always.have.been.calledOn(context);
+@@ -241,29 +241,29 @@
+ 
+             expect(function () {
+                 spy.should.have.been.calledWith("a", "b", "c");
+-            }).to.throw("expected spy to have been called with arguments a, b, c");
++            }).to.throw("expected spy to have been called with arguments 'a', 'b', 'c'");
+             expect(function () {
+                 spy.should.have.been.calledWithExactly("a", "b", "c");
+-            }).to.throw("expected spy to have been called with exact arguments a, b, c");
++            }).to.throw("expected spy to have been called with exact arguments 'a', 'b', 'c'");
+             expect(function () {
+                 spy.should.have.been.calledWithMatch(sinon.match("foo"));
+-            }).to.throw("expected spy to have been called with arguments matching match(\"foo\")");
++            }).to.throw(/^expected spy to have been called with arguments matching /);
+             expect(function () {
+                 spy.should.have.been.calledOnceWith("a", "b", "c");
+-            }).to.throw("expected spy to have been called exactly once with arguments a, b, c");
++            }).to.throw("expected spy to have been called exactly once with arguments 'a', 'b', 'c'");
+             expect(function () {
+                 spy.should.have.been.calledOnceWithExactly("a", "b", "c");
+-            }).to.throw("expected spy to have been called exactly once with exact arguments a, b, c");
++            }).to.throw("expected spy to have been called exactly once with exact arguments 'a', 'b', 'c'");
+ 
+             expect(function () {
+                 spy.getCall(0).should.have.been.calledWith("a", "b", "c");
+-            }).to.throw("expected spy to have been called with arguments a, b, c");
++            }).to.throw("expected spy to have been called with arguments 'a', 'b', 'c'");
+             expect(function () {
+                 spy.getCall(0).should.have.been.calledWithExactly("a", "b", "c");
+-            }).to.throw("expected spy to have been called with exact arguments a, b, c");
++            }).to.throw("expected spy to have been called with exact arguments 'a', 'b', 'c'");
+             expect(function () {
+                 spy.getCall(0).should.have.been.calledWithMatch(sinon.match("foo"));
+-            }).to.throw("expected spy to have been called with arguments matching match(\"foo\")");
++            }).to.throw(/^expected spy to have been called with arguments matching /);
+         });
+ 
+         it("should be correct for the negated cases", function () {
+@@ -279,7 +279,7 @@
+             }).to.throw("expected spy to not have been called with exact arguments 1, 2, 3");
+             expect(function () {
+                 spy.should.not.have.been.calledWithMatch(sinon.match(1));
+-            }).to.throw("expected spy to not have been called with arguments matching match(1)");
++            }).to.throw(/^expected spy to not have been called with arguments /);
+             expect(function () {
+                 spy.should.not.have.been.calledOnceWith(1, 2, 3);
+             }).to.throw("expected spy to not have been called exactly once with arguments 1, 2, 3");
+@@ -295,7 +295,7 @@
+             }).to.throw("expected spy to not have been called with exact arguments 1, 2, 3");
+             expect(function () {
+                 spy.getCall(0).should.not.have.been.calledWithMatch(sinon.match(1));
+-            }).to.throw("expected spy to not have been called with arguments matching match(1)");
++            }).to.throw(/^expected spy to not have been called with arguments matching /);
+         });
+ 
+         it("should be correct for the always cases", function () {
+@@ -314,7 +314,7 @@
+                 spy.should.always.have.been.calledWithExactly(1, 2, 3);
+             }).to.throw(expectedExactly);
+ 
+-            var expectedMatch = /expected spy to always have been called with arguments matching match\(1\)/;
++            var expectedMatch = /expected spy to always have been called with arguments matching /;
+             expect(function () {
+                 spy.should.always.have.been.calledWithMatch(sinon.match(1));
+             }).to.throw(expectedMatch);
+@@ -406,17 +406,17 @@
+ 
+             expect(function () {
+                 throwingSpy.should.have.thrown("TypeError");
+-            }).to.throw("expected spy to have thrown TypeError");
++            }).to.throw("expected spy to have thrown 'TypeError'");
+             expect(function () {
+                 throwingSpy.getCall(0).should.have.thrown("TypeError");
+-            }).to.throw("expected spy to have thrown TypeError");
++            }).to.throw("expected spy to have thrown 'TypeError'");
+ 
+             expect(function () {
+                 throwingSpy.should.have.thrown({ message: "x" });
+-            }).to.throw('expected spy to have thrown { message: "x" }');
++            }).to.throw("expected spy to have thrown { message: 'x' }");
+             expect(function () {
+                 throwingSpy.getCall(0).should.have.thrown({ message: "x" });
+-            }).to.throw('expected spy to have thrown { message: "x" }');
++            }).to.throw("expected spy to have thrown { message: 'x' }");
+         });
+ 
+         it("should be correct for the negated cases", function () {
+@@ -436,10 +436,10 @@
+ 
+             expect(function () {
+                 spy.should.not.have.thrown("Error");
+-            }).to.throw("expected spy to not have thrown Error");
++            }).to.throw("expected spy to not have thrown 'Error'");
+             expect(function () {
+                 spy.getCall(0).should.not.have.thrown("Error");
+-            }).to.throw("expected spy to not have thrown Error");
++            }).to.throw("expected spy to not have thrown 'Error'");
+ 
+             expect(function () {
+                 spy.should.not.have.thrown(error);
+@@ -464,11 +464,11 @@
+ 
+             expect(function () {
+                 throwingSpy.should.have.always.thrown("TypeError");
+-            }).to.throw("expected spy to always have thrown TypeError");
++            }).to.throw("expected spy to always have thrown 'TypeError'");
+ 
+             expect(function () {
+                 throwingSpy.should.have.always.thrown({ message: "x" });
+-            }).to.throw('expected spy to always have thrown { message: "x" }');
++            }).to.throw("expected spy to always have thrown { message: 'x' }");
+         });
+     });
+ 

@@ -1,0 +1,57 @@
+node-sinon-chai (3.7.0+~cs3.2.5-1) unstable; urgency=medium
+
+  * Team upload
+  * Embed Typescript definition for sinon-chai
+  * New upstream version 3.7.0+~cs3.2.5
+
+ -- Vivek K J <vivekkj@protonmail.com>  Fri, 10 Sep 2021 15:59:22 +0200
+
+node-sinon-chai (3.5.0-2) unstable; urgency=medium
+
+  [ Xavier Guimard ]
+  * Team upload
+  * Update test for node-sinon ≥ 9.2.4~
+  * Drop useless test dependency to coffeescript
+
+ -- Vivek K J <vivekkj@protonmail.com>  Fri, 10 Sep 2021 18:02:24 +0530
+
+node-sinon-chai (3.5.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Update standards version to 4.5.0, no changes needed.
+  * Apply multi-arch hints.
+    + node-sinon-chai: Add Multi-Arch: foreign.
+
+  [ Xavier Guimard ]
+  * Bump debhelper compatibility level to 13
+  * Declare compliance with policy 4.5.1
+  * Modernize debian/watch
+  * Use dh-sequence-nodejs
+  * New upstream version 3.5.0
+
+ -- Xavier Guimard <yadd@debian.org>  Tue, 01 Dec 2020 13:24:13 +0100
+
+node-sinon-chai (3.4.0-1) unstable; urgency=medium
+
+  * Team upload
+  * Bump debhelper compatibility level to 12
+  * Declare compliance with policy 4.4.1
+  * Add "Rules-Requires-Root: no"
+  * Change section to javascript
+  * Add debian/gbp.conf
+  * Add upstream/metadata
+  * New upstream version 3.4.0
+  * Use pkg-js-tools auto test & install
+  * Require node-sinon ≥ 4
+  * Update VCS fields to salsa
+  * Fix copyright
+
+ -- Xavier Guimard <yadd@debian.org>  Mon, 20 Jan 2020 14:38:42 +0100
+
+node-sinon-chai (2.10.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #862716)
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 16 May 2017 17:25:46 +0530

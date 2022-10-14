@@ -1,0 +1,31 @@
+Source: node-sinon-chai
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+ , chai <!nocheck>
+ , mocha <!nocheck>
+ , node-sinon (>= 9.2.4~) <!nocheck>
+ , dh-sequence-nodejs
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-sinon-chai
+Vcs-Git: https://salsa.debian.org/js-team/node-sinon-chai.git
+Homepage: https://github.com/domenic/sinon-chai#readme
+Rules-Requires-Root: no
+
+Package: node-sinon-chai
+Architecture: all
+Depends: ${misc:Depends}
+Multi-Arch: foreign
+Provides: ${nodejs:Provides}
+Description: Extends Chai with assertions for the Sinon.JS mocking framework
+ Chai is a BDD / TDD assertion library for nodejs and the  browser that can be
+ delightfully paired with any javascript testing framework.
+ .
+ Sinon provides test framework agnostic JavaScript test spies, stubs and mocks.
+ .
+ This library is a build dependency of node-chokidar.
+ .
+ Node.js is an event-based server-side JavaScript engine.
